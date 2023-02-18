@@ -1,0 +1,156 @@
+ARCHIVIO ERNESTO MONACI 
+LA MARCATURA DEL <teiHeader>   
+ <teiHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Titolo della lettera</title>
+                <editor role="transcription"><persName>Nome Cognome</persName></editor>
+                <editor role="encoding"><persName>Nome Cognome</persName></editor>
+            </titleStmt>
+            <publicationStmt>
+                <publisher>Laboratorio Monaci. Sapienza Università di Roma</publisher>
+                <date when="2020-03-05"/>
+                <availability>
+                    <licence target="http://creativecommons.org/licenses/by-nc-sa/4.0/"/>
+                </availability>
+            </publicationStmt>
+            <sourceDesc>
+                <listBibl><bibl>Eventuali riferimenti bibliografici</bibl></listBibl>
+                <msDesc>
+                  <msIdentifier><repository>Archivio Monaci, Società Filologica Romana, presso il Dipartimento di Studi Europei, Americani e Interculturali, Sapienza, Università di Roma.</repository> <idno>Busta n. ..., fascicolo ..., lettera ....</idno></msIdentifier>
+                  <msContents><summary corresp="#letter">Sintesi contenuto lettera.</summary></msContents>
+                </msDesc>
+            </sourceDesc>
+        </fileDesc>
+        <profileDesc>
+            <correspDesc>
+                <correspAction type="sent">
+                    <persName ref="#">Nome Cognome mittente</persName>
+                    <placeName ref="#">Luogo d’invio</placeName>
+                    <date when="1900-01-01"/>
+                </correspAction>
+                <correspAction type="received">
+                    <persName ref="#">Nome Cognome destinatario</persName>
+                    <placeName ref="#">Luogo di ricezione</placeName>
+                    <date when="1900-01-01"/>
+                </correspAction>
+            </correspDesc>
+        </profileDesc>
+    </teiHeader>
+
+- <title>Titolo della lettera</title>. Il titolo va espresso nella forma ‘Nome Cognome mittente’ a ‘Nome Cognome destinatario’, data (giorno mese anno, con il mese scritto per esteso). Esempio: <title>Pio Rajna a Ernesto Monaci, 23 gennaio 1873</title>.
+- <editor role="transcription"><persName>Nome Cognome</persName></editor>. Nome del responsabile della trascrizione.
+- <editor role="encoding"><persName>Nome Cognome</persName></editor>. Nome del responsabile della codifica XML.
+- <date when="2020-03-05"/> (dentro a <publicationStmt>). Data della codifica XML della lettera, espressa nel formato AAAA-MM-GG (anno, mese e giorno, indicati rispettivamente con quattro, due e due cifre).
+- <listBibl><bibl>Eventuali riferimenti bibliografici</bibl></listBibl>. Nel contenuto di <listBibl> è possibile indicare riferimenti bibliografici relativi a edizioni della lettera, ad esempio la tesi di laurea da cui è stata tratta la trascrizione. Ogni riferimento bibliografico deve essere marcato come <bibl>. All’interno di ogni <bibl>, il titolo dell’opera deve essere marcato come <title>. Esempio: <listBibl><bibl>Nome Cognome autore, <title>titolo dell’opera 1</title>, luogo, anno</bibl> <bibl>Nome Cognome autore, <title>titolo dell’opera 2</title>, luogo, anno</bibl></listBibl>. Se invece non occorre specificare alcun riferimento bibliografico, rimuovere del tutto il <listBibl> con il suo contenuto (da <listBibl> a </listBibl>).
+- <idno>Busta n. ..., fascicolo ..., lettera ....</idno>. Esempio: <idno>Busta n. 22, fascicolo 1095, lettera 1.</idno>.
+- <summary corresp="#letter">Breve sintesi del contenuto della lettera.</summary>. Nell’attributo @corresp va indicata la tipologia del documento preceduta da # (#letter, #telegram, #postcard, #notes...). Nel contenuto di <summary> vanno fornite brevi indicazioni sul contenuto della lettera, che possono coincidere sostanzialmente con il <title> della lettera (non occorre riassumere le tematiche trattate all’interno della lettera, a meno che non si tratti di qualcosa di particolarmente significativo che si ritiene utile segnalare). Esempio: <summary corresp="#letter">Lettera di Pio Rajna a Ernesto Monaci del 23 gennaio 1873.</summary>.
+- <persName ref="#">Nome Cognome mittente/destinatario</persName> (dentro a <correspAction>). L’attributo @ref deve avere come valore il valore dell’attributo @xml:id che la persona ha nella Authority List listPersons.xml, preceduto da #. Esempio: <persName ref="#EM">Ernesto Monaci</persName>.
+- <placeName ref="#">Luogo d’invio/di ricezione</placeName> (dentro a <correspAction>). L’attributo @ref deve avere come valore il valore dell’attributo @xml:id che il luogo ha nella Authority List listPlaces.xml, preceduto da #. Esempio: <placeName ref="#roma">Roma</placeName>. Se il luogo d’invio o di ricezione è ignoto, indicare "?" come contenuto di <placeName> e "#sconosciuto" come valore dell’attributo @ref. Esempio: <placeName ref="#sconosciuto">?</placeName>.
+- <date when="1900-01-01"/> (dentro a <correspAction>). Data espressa nel formato AAAA-MM-GG (anno, mese e giorno, indicati rispettivamente con quattro, due e due cifre). Se la data d’invio o ricezione è ignota, togliere l’attributo @when ed il suo valore. Esempio: <date/>. 
+- In caso di inoltri è possibile aggiungere dopo <correspAction type="sent"> e <correspAction type="received"> un <correspAction type="forwarded">.
+
+SE SI CODIFICANO GLI APPUNTI DEI CORSI ANZICHÉ LE LETTERE:
+- Il <title> non è vincolato a una struttura fissa. Esempio: <title>Appunti di Ernesto Monaci per il corso su ...</title>.
+- Il valore dell’attributo @corresp di <summary> è "#notes". Esempio: <summary corresp="#notes">Appunti su...</summary>.
+- Non occorre la sezione del <teiHeader> relativa all’invio e alla ricezione della lettera (<profileDesc>).
+
+LA MARCATURA DEL <text>
+<text>
+        <body>
+            <div type="transcription" xml:lang="it">
+                <div type="textpart" subtype="letter">
+                    <opener>...</opener>
+                    <p>...</p>
+                    <closer>...</closer>
+                    <postscript><p>....</p></postscript>
+                </div>
+            </div>
+        </body>
+    </text>
+
+ELEMENTI RELATIVI ALLA STRUTTURA DEL TESTO
+- <div type="transcription" xml:lang="it">...</div>, che contiene al suo interno l’intera trascrizione del documento, ha un attributo @xml:lang nel quale va specificata la lingua in cui il documento è scritto. Il valore di base è "it" per l’italiano, ma va cambiato nei casi di lettere scritte in lingue differenti, ad esempio in "fr" per quelle in francese.
+- <div type="textpart" subtype="letter">...</div> contiene al suo interno l’intera lettera; se oltre alla lettera sono presenti anche altri elementi come buste e allegati, il <div type="textpart" subtype="letter">...</div> può essere seguito da altri <div type="textpart">...</div> aventi un @subtype con valore differente, ad esempio "envelope", "enclosure", "notes".
+Esempio della struttura di una lettera con busta e allegato: 
+<div type="transcription" xml:lang="it">
+                <div type="textpart" subtype="letter">
+...
+                </div>
+     <div type="textpart" subtype="envelope">
+...
+                </div>
+  <div type="textpart" subtype="enclosure">
+...
+                </div>
+<div type="textpart" subtype="notes">
+...
+                </div>
+           </div>
+
+
+Negli appunti dei corsi, invece, il @subtype ha valore "section" ed è seguito dall'attributo @n, con numerazione progressiva delle sezioni. Esempio: 
+            <div type="transcription" xml:lang="it">
+                <div type="textpart" subtype="section" n="1">
+                    ...
+                </div>
+                <div type="textpart" subtype="section" n="2">
+                   ...
+                </div>
+       </div>
+- Struttura del testo all’interno del <div type="textpart">...</div>:
+Lettere:
+- <opener>...</opener>: racchiude l’apertura della lettera
+- <p>...</p>: racchiude ciascuno dei paragrafi della lettera
+- <closer>...</closer>: racchiude la chiusura della lettera
+- <postscript><p>...</p></postscript>: racchiude un eventuale post scriptum
+
+Appunti per i corsi:
+- <head>...</head>: racchiude l’eventuale titolo di ciascuna sezione degli appunti. Può essere usato anche nelle lettere per i titoli aggiunti dall’editore per indicare sezioni aggiuntive come ad esempio gli allegati; per distinguere gli <head> d’autore da quelli editoriali, i secondi prevedono il ricorso anche dell'elemento <note> per indicare che si tratta di una nota editoriale. Esempio: <head><note>Allegato 1</note></head>.  
+- <p>...</p>: racchiude ciascuno dei paragrafi degli appunti
+
+- Inizio di una nuova pagina: <pb/>. Esempio: avrei <pb/> potuto. Se l’interruzione di pagina cade all’interno di una parola, <pb/> deve avere l’attributo @break con valore "no". Esempio: do<pb break="no"/>vermegli.
+
+ELEMENTI RELATIVI ALLE CONVENZIONI EDITORIALI
+- Caratteri illeggibili: <gap reason="illegible" unit="chars"/>. Se il numero di caratteri non è determinabile: <gap reason="illegible" extent="unknown" unit="chars"/>. Altrimenti specificare con @quantity il numero di caratteri, ad esempio: <gap reason="illegible" quantity="3" unit="chars"/>
+- Letture incerte: <unclear>...</unclear>. Esempio: a chi io debba <unclear>rivolgermi</unclear>.
+- Parole cancellate dall’autore: <del>...</del>. Esempio: <del>abbastanza</del> totalmente diverse.
+- Caratteri sottolineati: <hi rend="underline">...</hi>. Esempio: <hi rend="underline">Rivista</hi>.
+- Scioglimento di abbreviazioni (non necessario per abbreviazioni particolarmente frequenti quali ms., p., pp., pag., pagg., PS, sig., etc.): <expan>...</expan> per l’intera abbreviazione + espansione, <abbr>...</abbr> per l’abbreviazione, <ex>...</ex> per l’espansione, <am>...</am> per l’abbreviation mark usato per indicare che si tratta di un’abbreviazione (solitamente un punto, ma non sempre). 
+Esempio 1: Ch.mo (= Chiarissimo):
+<expan><abbr>Ch</abbr><am>.</am><ex>iarissi</ex><abbr>mo</abbr></expan>
+Esempio 2: 7bre (= settembre):
+<expan><am>7</am><ex>settem</ex><abbr>bre</abbr></expan>
+- Parole straniere che devono essere rese in corsivo: <foreign>...</foreign>
+- Note editoriali in corsivo: <note>...</note>
+
+ELEMENTI RELATIVI ALLA MARCATURA SEMANTICA DEI CONTENUTI
+- Nomi di persona: <persName ref="#">...</persName>. L’attributo @ref deve avere come valore il valore dell’attributo @xml:id che la persona ha nella Authority List listPersons.xml, preceduto da #. Esempio: <persName ref="#EM">Ernesto Monaci</persName>. Se la persona non è identificabile non occorre l’attributo @ref. Se la persona è menzionata in quanto autore di qualche opera (e.g. Dante), deve essere incluso l’attributo @type con valore "author". Esempio: <persName type="author" ref="#leopardi">Giacomo Leopardi</persName>.
+- Nomi di luogo: <placeName ref="#">...</placeName>. L’attributo @ref deve avere come valore il valore dell’attributo @xml:id che il luogo ha nella Authority List listPlaces.xml, preceduto da #. Esempio: <placeName ref="#roma">Roma</placeName>.
+- Nomi di istituzioni: <orgName ref="#">...</orgName>. L’attributo @ref deve avere come valore il valore dell’attributo @xml:id che l’istituzione ha nella Authority List listOrg.xml, preceduto da #. Esempio: <orgName ref="#BibVat">Biblioteca</orgName>. Se l’istituzione non è identificabile non occorre il @ref.
+- Periodici, opere, manoscritti, iscrizioni, altre lettere note del carteggio: <title>...</title>. Il <title>, se impiegato per marcare opere e periodici noti, deve avere un attributo @ref avente valore il valore dell’attributo @xml:id che l’opera o periodico ha nell’Authority List listBibl.xml, preceduto da #. Esempio: <title ref="#RFR">Rivista</title>.
+Il <title>, se impiegato per marcare manoscritti, iscrizioni o altre lettere note del carteggio, deve avere un attributo @type con valore "manuscript" o inscription" o "letter" e, nei primi due casi, un attributo @key con cui identificare il manoscritto o l’epigrafe. Per le lettere note verrà poi aggiunto in un secondo momento un @ref con l’URL della lettera all’interno del database.
+Esempio 1: <title type="manuscript" key="Codice Vaticano">cod. vat.</title>.
+Esempio 2: una <title type="letter" ref="...">lettera</title> di Vs. in data de’ 30 agosto.
+- Termini particolarmente significativi, ad esempio relativi alle tematiche di studio di Monaci: <rs type="topic" key="...">...</rs>. Esempio: <rs type="topic" key="veneziano">dialetto veneziano</rs>.
+- Date (solamente quelle dentro a <opener>...</opener> o <closer>...</closer>): <date when="1900-01-01">...</date>. Data espressa nel formato AAAA-MM-GG (anno, mese e giorno, indicati rispettivamente con quattro, due e due cifre). Esempio: <date when="1872-12-29">29 dic. 72</date>.
+- Citazioni: <quote>...</quote>. Esempio: <quote>Levius fit patientia quidquid corrigre est nefas</quote>.
+- Saluti iniziali o finali (dentro a <opener>...</opener> o <closer>...</closer>): <salute>...</salute>. Se i saluti sono su più righe, usare più <salute> distinti.
+Esempio saluti iniziali: <salute>Mio caro <persName ref="#EM">Monaci</persName>,</salute>.
+Esempio saluti finali: <salute>Vogliami bene, e credimi sempre Tuo affmo</salute>.
+- Insieme di data e luogo d’invio (dentro a <opener>...</opener> o <closer>...</closer>): <dateline>...</dateline>. Esempio: 
+<dateline>
+   <placeName ref="#milano">Milano</placeName> 
+   <date when="1873-06-26">26 Giugno 1873</date>
+</dateline>
+- Firma dell’autore della lettera (dentro a <closer>...</closer>): <signed>...</signed>. Esempio: <signed><persName ref="#PR">Pio Rajna</persName></signed>.
+- Indirizzo (dentro a <opener>...</opener> o <closer>...</closer>; può essere dentro a <dateline>): <address><addrLine>...</addrLine></address>. Esempio: 
+  <address>
+      <addrLine>Largo Sa. Oliva, vicolo</addrLine>
+      <addrLine>Tromba, n. 4</addrLine>
+  </address>
+
+RIEPILOGO DEGLI ELEMENTI MARCATI
+Metadati (<teiHeader>): titolo; responsabile trascrizione; responsabile codifica; responsabile pubblicazione (fisso); data pubblicazione; licenza (fissa); eventuale bibliografia; collocazione attuale; argomento; mittente, luogo invio, data invio, destinatario, luogo ricezione, data ricezione (solo per le lettere).
+
+Testo (<text>): sottolineature, caratteri illeggibili, letture incerte, eventuali parole cancellate dall’autore, divisione in pagine; scioglimento abbreviazioni (tranne le più comuni); menzioni di date (solo in <opener> e <closer>), luoghi, istituzioni, individui, autori, citazioni, parole straniere, opere/periodici, manoscritti/iscrizioni/lettere note, tematiche significative.
